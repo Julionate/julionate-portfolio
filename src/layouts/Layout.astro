@@ -1,5 +1,12 @@
 ---
 import '@layout/Layout.astro'
+
+
+type LayoutProps = {
+    title?: string
+}
+
+const { title } = Astro.props as LayoutProps
 ---
 
 <html lang="en">
@@ -9,7 +16,7 @@ import '@layout/Layout.astro'
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{!title ? "Julionate" : `${title} - Julionate`}</title>
 	</head>
 	<body>
 		<slot/>
