@@ -7,6 +7,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
+		"shadcn": "pnpm dlx shadcn@latest",
 		"lint": "biome lint .",
 		"lint:fix": "biome lint --write",
 		"format": "biome format .",
