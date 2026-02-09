@@ -17,9 +17,9 @@ Check it out here: [Julionate – Portfolio](https://google.com)
 
 ## Shadcn (Alias)
 
-| Command       | Action                                                                                                      |
-| :------------ | :---------------------------------------------------------------------------------------------------------- |
-| `pnpm shadcn` | Alias for `pnpm dlx shadcn@latest`. Use it to add components quickly, for example: `pnpm shadcn add button` |
+| Command       | Action                                                      |
+| :------------ | :---------------------------------------------------------- |
+| `pnpm shadcn` | Alias for `pnpm dlx shadcn@latest`. Use it to add components quickly, for example: `pnpm shadcn add button`                                |
 
 ## Formatter (Biome)
 
