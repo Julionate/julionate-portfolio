@@ -1,7 +1,9 @@
-<header class="bg-white flex items-center justify-end shadow-md z-50 h-12 px-3 fixed w-screen">
+---
+import { ThemeButtonManager } from "./ThemeButtonManager";
+---
+
+<header class="flex items-center justify-end shadow-md z-50 h-12 px-3 fixed w-screen">
     <div class="group">
-        <button class="bg-transparent border border-gray-300 rounded-md cursor-pointer px-2 py-1 group-hover:bg-gray-200 group-hover:border-gray-200 group-hover:-translate-y-0.5 group-hover:cursor-pointer transition-[transform_colors] duration-300 group-hover:duration-200">
-            <span>Theme</span>
-        </button>
+        <ThemeButtonManager client:load></ThemeButtonManager>
     </div>
 </header>
