@@ -1,43 +1,33 @@
-# Astro Starter Kit: Minimal
+# Julionate Portfolio Website
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Welcome to my portfolio! Here you can explore all my projects, skills, and interests.
+Check it out here: [Julionate – Portfolio](https://google.com)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Julionate Portfolio Website Screenshot](./docs/img/website-screenshot.png)
 
-## 🚀 Project Structure
+# Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+## Astro Development
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command        | Action                                         |
+| :------------- | :--------------------------------------------- |
+| `pnpm install` | Install all dependencies                       |
+| `pnpm dev`     | Start the local dev server at `localhost:4321` |
+| `pnpm build`   | Build the project for production               |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Shadcn (Alias)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command       | Action                                                                                                      |
+| :------------ | :---------------------------------------------------------------------------------------------------------- |
+| `pnpm shadcn` | Alias for `pnpm dlx shadcn@latest`. Use it to add components quickly, for example: `pnpm shadcn add button` |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Formatter (Biome)
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command           | Action                                            |
+| :---------------- | :------------------------------------------------ |
+| `pnpm lint`       | Check for errors                                  |
+| `pnpm lint:fix`   | Apply safe fixes for errors                       |
+| `pnpm format`     | Check code formatting and style                   |
+| `pnpm format:fix` | Apply code formatting                             |
+| `pnpm check`      | Check for errors and formatting issues            |
+| `pnpm check:fix`  | Apply safe fixes for errors and formatting issues |
