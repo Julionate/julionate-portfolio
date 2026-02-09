@@ -17,7 +17,7 @@ const { title } = Astro.props as LayoutProps;
 		<meta name="generator" content={Astro.generator} />
 		<title>{!title ? "Julionate" : `${title} - Julionate`}</title>
 	</head>
-	<body>
+	<body class="grid grid-rows-[auto_1fr_auto] min-h-screen min-w-screen">
 		<slot/>
 	</body>
 </html>
