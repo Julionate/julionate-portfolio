@@ -1,9 +1,26 @@
 ---
+import { i18n } from "astro:config/client";
+import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
+import type { Language } from "@type/Languages";
+import type { Locale } from "@type/Locales";
+import { LanguageButton } from "./LanguageButton";
 import { ThemeButtonManager } from "./ThemeButtonManager";
+
+let languages: Language[] = [];
+
+if (i18n?.locales) {
+	const codes = toCodes(i18n.locales) as Locale[];
+
+	codes.forEach((code) => {
+		const url = getRelativeLocaleUrl(code);
+		languages.push({ code, url });
+	});
+}
 ---
 
 <header class="flex items-center justify-end shadow-md dark:shadow-white/5 z-50 h-12 px-3 fixed w-screen">
-    <div class="group">
+    <div class="flex gap-2">
+        <LanguageButton buttonText="Language" locales={languages} client:load></LanguageButton>
         <ThemeButtonManager client:load></ThemeButtonManager>
     </div>
 </header>

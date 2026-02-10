@@ -1,7 +1,14 @@
 ---
 import { HeroWelcome } from "./HeroWelcome";
+
+type HeroProps = {
+	title?: string;
+	subtitle: string;
+};
+
+const { title = "JULIONATE", subtitle } = Astro.props as HeroProps;
 ---
 
 <section class="h-screen pt-12 flex flex-col justify-center items-center">
-    <HeroWelcome title="JULIONATE" subtitle="Apprentice of Everything" client:load/>
+    <HeroWelcome title={title} subtitle={subtitle} client:load/>
 </section>
