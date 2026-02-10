@@ -43,7 +43,7 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			<M.h1
 				aria-label="Julionate"
 				variants={TitleVariants}
-				className="text-8xl font-bold"
+				className="text-5xl sm:text-8xl font-bold"
 				initial="hidden"
 				animate="visible"
 				onAnimationComplete={() => {
@@ -64,7 +64,7 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			</M.h1>
 			<M.p
 				aria-label="Apprentice of Everything"
-				className="text-2xl text-center origin-top"
+				className="text-xl sm:text-2xl text-center origin-top"
 				initial={{ height: 0, opacity: 0, scale: 0 }}
 				animate={
 					finish
