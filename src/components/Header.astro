@@ -1,10 +1,10 @@
 ---
 import { i18n } from "astro:config/client";
 import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
-import type { Language } from "@type/Languages";
-import type { Locale } from "@type/Locales";
-import { LanguageButton } from "./LanguageButton";
-import { ThemeButtonManager } from "./ThemeButtonManager";
+import { LanguageButton } from "@/components/LanguageButton";
+import { ThemeButtonManager } from "@/components/ThemeButtonManager";
+import type { Language } from "@/types/Languages";
+import type { Locale } from "@/types/Locales";
 
 let languages: Language[] = [];
 

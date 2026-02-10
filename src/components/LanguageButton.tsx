@@ -1,13 +1,13 @@
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from "@/components/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { getLang } from "@/lib/getLang";
 import type { Language } from "@/types/Languages";
-import { getLang } from "@/utils/getLang";
 
 interface Props {
 	buttonText: string;

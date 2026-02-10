@@ -3,6 +3,13 @@
 	"editor.defaultFormatter": "biomejs.biome",
 	"css.lint.unknownAtRules": "ignore",
 	"tailwindCSS.classAttributes": ["class", "className"],
+	"tailwindCSS.files.exclude": [
+		"**/.git/**",
+		"**/node_modules/**",
+		"**/.hg/**",
+		"**/.svn/**",
+		"**/components/ui/**"
+	],
 	"editor.codeActionsOnSave": {
 		"source.fixAll.biome": "explicit",
 		"source.organizeImports.biome": "explicit"
