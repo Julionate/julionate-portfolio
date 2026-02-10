@@ -39,7 +39,7 @@ export function HeroWelcome({ title, subtitle }: Props) {
 	};
 
 	return (
-		<div>
+		<>
 			<M.h1
 				aria-label="Julionate"
 				variants={TitleVariants}
@@ -78,6 +78,6 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			>
 				{subtitle}
 			</M.p>
-		</div>
+		</>
 	);
 }
