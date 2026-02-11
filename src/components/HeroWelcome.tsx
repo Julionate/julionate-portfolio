@@ -1,5 +1,7 @@
+import { ArrowDown } from "lucide-react";
 import { motion as M, stagger, type Variants } from "motion/react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 interface Props {
 	title: string;
@@ -77,6 +79,24 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			>
 				{subtitle}
 			</M.p>
+			<M.a
+				className="animate-bounce translate-y-10"
+				href="todo"
+				initial={{ opacity: 0, y: 5 }}
+				animate={
+					finish
+						? {
+								opacity: 1,
+								y: 0,
+								transition: { delay: 0.5 },
+							}
+						: {}
+				}
+			>
+				<Button variant="outline" size="icon-lg" className="rounded-full">
+					<ArrowDown />
+				</Button>
+			</M.a>
 		</>
 	);
 }

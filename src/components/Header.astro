@@ -6,6 +6,12 @@ import { ThemeButtonManager } from "@/components/ThemeButtonManager";
 import type { Language } from "@/types/Languages";
 import type { Locale } from "@/types/Locales";
 
+type props = {
+	langBtnLabel: string;
+};
+
+const { langBtnLabel = "Language" } = Astro.props as props;
+
 let languages: Language[] = [];
 
 if (i18n?.locales) {
@@ -20,7 +26,7 @@ if (i18n?.locales) {
 
 <header class="flex items-center justify-end shadow-md dark:shadow-white/5 z-50 h-12 px-3 fixed w-screen">
     <div class="flex gap-2">
-        <LanguageButton buttonText="Language" locales={languages} client:load></LanguageButton>
+        <LanguageButton buttonText={langBtnLabel} locales={languages} client:load></LanguageButton>
         <ThemeButtonManager client:load></ThemeButtonManager>
     </div>
 </header>

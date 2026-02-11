@@ -1,3 +1,4 @@
+import { Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -18,7 +19,10 @@ export function LanguageButton({ buttonText, locales }: Props) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline">{buttonText}</Button>
+				<Button variant="outline">
+					<Languages />
+					<span>{buttonText}</span>
+				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuGroup>
