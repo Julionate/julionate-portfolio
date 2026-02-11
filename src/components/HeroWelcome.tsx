@@ -1,5 +1,4 @@
-import type { Variants } from "motion/react";
-import { motion as M, stagger } from "motion/react";
+import { motion as M, stagger, type Variants } from "motion/react";
 import { useState } from "react";
 
 interface Props {
