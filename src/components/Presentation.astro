@@ -1,14 +1,21 @@
 ---
+import { LoaderCircle } from "lucide-react";
+import { Knowledges } from "@/components/Knowledges";
 import Section from "@/layouts/Section.astro";
 ---
 
-<Section id="presentation" class="grid grid-cols-2 items-center">
-    <div class="text-balance prose prose-slate dark:prose-invert">
-        <h1 class="text-2xl font-bold">Hi, My name is Julio! 👋</h1>
+<Section id="presentation" class="grid grid-cols-1 lg:grid-cols-2 items-center lg:gap-12">
+    <div class="text-pretty prose prose-slate dark:prose-invert">
+        <h1 class="font-bold text-center lg:text-start">Hi, My name is Julio! 👋</h1>
         <p>I'm a software enthusiast whos loves building things and being busy with my own problems and solving them.</p>
         <p>I've studied a Computer Technician and learned a lot of technologies to confront the world!</p>
     </div>
-    <div class="bg-red-500 size-28">
-
+    <div class="prose dark:prose-invert prose-h2:m-0 prose-p:m-0">
+        <h1 class="font-bold text-center">My Knowledges!</h1>
+        <Knowledges client:only>
+            <div slot="fallback" class="h-50.75">
+                <LoaderCircle className="mx-auto animate-spin size-8"></LoaderCircle>
+            </div>
+        </Knowledges>
     </div>
 </Section>

@@ -48,7 +48,6 @@ export function HeroWelcome({ title, subtitle }: Props) {
 				initial="hidden"
 				animate="visible"
 				onAnimationComplete={() => {
-					console.log("finished");
 					setFinish(true);
 				}}
 			>
