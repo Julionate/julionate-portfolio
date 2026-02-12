@@ -77,7 +77,12 @@ export function Knowledges() {
 				<CarouselPrevious />
 				<CarouselNext />
 			</Carousel>
-			<div className="flex max-w-lg mx-auto gap-1 mt-2 flex-wrap">
+			<div className="flex gap-3 items-center max-w-lg mx-auto my-4">
+				<div className="grow bg-border h-px"></div>
+				<p className="text-primary/75">Select one</p>
+				<div className="grow bg-border h-px"></div>
+			</div>
+			<div className="flex max-w-lg mx-auto gap-1 flex-wrap">
 				{Data.map((item, i) => (
 					<Button
 						className="size-9.75"
