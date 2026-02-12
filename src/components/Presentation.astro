@@ -1,6 +1,7 @@
 ---
 import { LoaderCircle } from "lucide-react";
 import { Knowledges } from "@/components/Knowledges";
+import { Button } from "@/components/ui/button";
 import Section from "@/layouts/Section.astro";
 ---
 
@@ -8,7 +9,9 @@ import Section from "@/layouts/Section.astro";
     <div class="text-pretty prose prose-slate dark:prose-invert">
         <h1 class="font-bold text-center lg:text-start">Hi, My name is Julio! 👋</h1>
         <p>I'm a software enthusiast whos loves building things and being busy with my own problems and solving them.</p>
-        <p>I've studied a Computer Technician and learned a lot of technologies to confront the world!</p>
+        <p>I've studied a Computer Technician and learned a lot of technologies to confront the world! And maybe you're thinking... What this guy made up?</p>
+        <p>Glad you asked <span class="italic text-primary/50">(I hope so...)</span> take a look! <span class="animate-bounce inline-block">👇</span></p>
+        <Button className="cursor-pointer">See my projects!</Button>
     </div>
     <div class="prose dark:prose-invert prose-h2:m-0 prose-p:m-0">
         <h1 class="font-bold text-center">My Knowledges!</h1>
