@@ -3,19 +3,34 @@ import { LoaderCircle } from "lucide-react";
 import { Knowledges } from "@/components/Knowledges";
 import { Button } from "@/components/ui/button";
 import Section from "@/layouts/Section.astro";
+
+type Props = {
+	presTitle: string;
+	presParagraph: string | string[];
+	presBtnText: string;
+	knowTitle: string;
+	knowSelectLabel: string;
+};
+
+const { presTitle, presParagraph, presBtnText, knowTitle, knowSelectLabel } =
+	Astro.props as Props;
+
+const paragraphs = Array.isArray(presParagraph)
+	? presParagraph
+	: [presParagraph];
 ---
 
 <Section id="presentation" class="grid grid-cols-1 lg:grid-cols-2 items-center lg:gap-12">
     <div class="text-pretty prose prose-slate dark:prose-invert">
-        <h1 class="font-bold text-center lg:text-start">Hi, My name is Julio! 👋</h1>
-        <p>I'm a software enthusiast whos loves building things and being busy with my own problems and solving them.</p>
-        <p>I've studied a Computer Technician and learned a lot of technologies to confront the world! And maybe you're thinking... What this guy made up?</p>
-        <p>Glad you asked <span class="italic text-primary/50">(I hope so...)</span> take a look! <span class="animate-bounce inline-block">👇</span></p>
-        <Button className="cursor-pointer">See my projects!</Button>
+        <h1 class="font-bold text-center lg:text-start">{presTitle}</h1>
+        {paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+        ))}
+        <Button className="cursor-pointer">{presBtnText}</Button>
     </div>
     <div class="prose dark:prose-invert prose-h2:m-0 prose-p:m-0">
-        <h1 class="font-bold text-center">My Knowledges!</h1>
-        <Knowledges client:only>
+        <h1 class="font-bold text-center">{knowTitle}</h1>
+        <Knowledges selectBtnLabel={knowSelectLabel} client:only>
             <div slot="fallback" class="h-50.75">
                 <LoaderCircle className="mx-auto animate-spin size-8"></LoaderCircle>
             </div>

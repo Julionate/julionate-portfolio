@@ -12,7 +12,11 @@ import {
 } from "@/components/ui/carousel";
 import { Knowledges as Data, TypeColors } from "@/data/knowledges";
 
-export function Knowledges() {
+type Props = {
+	selectBtnLabel: string;
+};
+
+export function Knowledges({ selectBtnLabel }: Props) {
 	const [api, setApi] = useState<CarouselApi>();
 
 	useEffect(() => {
@@ -79,7 +83,7 @@ export function Knowledges() {
 			</Carousel>
 			<div className="flex gap-3 items-center max-w-lg mx-auto my-4">
 				<div className="grow bg-border h-px"></div>
-				<p className="text-primary/75">Select one</p>
+				<p className="text-primary/75">{selectBtnLabel}</p>
 				<div className="grow bg-border h-px"></div>
 			</div>
 			<div className="flex max-w-lg mx-auto gap-1 flex-wrap">
