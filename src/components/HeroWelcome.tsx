@@ -81,7 +81,7 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			</M.p>
 			<M.a
 				className="animate-bounce translate-y-10"
-				href="todo"
+				href="#presentation"
 				initial={{ opacity: 0, y: 5 }}
 				animate={
 					finish
