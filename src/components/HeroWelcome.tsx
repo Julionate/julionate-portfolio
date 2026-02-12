@@ -44,7 +44,7 @@ export function HeroWelcome({ title, subtitle }: Props) {
 			<M.h1
 				aria-label="Julionate"
 				variants={TitleVariants}
-				className="text-5xl sm:text-8xl font-bold"
+				className="text-5xl sm:text-8xl font-bold text-shadow-sm"
 				initial="hidden"
 				animate="visible"
 				onAnimationComplete={() => {

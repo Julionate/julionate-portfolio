@@ -9,6 +9,7 @@ type HeroProps = {
 const { title = "JULIONATE", subtitle } = Astro.props as HeroProps;
 ---
 
-<section class="h-dvh sm:pt-6 flex flex-col justify-center items-center overflow-clip">
+<section class="h-dvh sm:pt-6 flex flex-col justify-center items-center overflow-clip relative">
+	<div class="from-pink-500 to-70% to-transparent bg-radial inset-0 absolute rounded-full -z-50 opacity-0 dark:opacity-20"></div>
     <HeroWelcome title={title} subtitle={subtitle} client:load/>
 </section>
