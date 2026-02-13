@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Carousel,
 	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Knowledges as Data, TypeColors } from "@/data/knowledges";
 
@@ -17,22 +17,68 @@ type Props = {
 export function Knowledges({ selectBtnLabel }: Props) {
 	const [api, setApi] = useState<CarouselApi>();
 
-	useEffect(() => {
-		if (!api) return;
-	}, [api]);
+	const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-	const goTo = (index: number) => {
+	const goToIndex = (input: number) => {
 		if (!api) return;
 
 		const totalValues = api.scrollSnapList().length;
-		if (index > totalValues) return;
+		if (input > totalValues) return;
 
-		api.scrollTo(index);
+		carouselStopAndResume();
+		api.scrollTo(input);
 	};
+
+	const goPrev = () => {
+		if (!api) return;
+
+		carouselStopAndResume();
+		api.scrollPrev();
+	};
+
+	const goNext = () => {
+		if (!api) return;
+
+		carouselStopAndResume();
+		api.scrollNext();
+	};
+
+	const carouselStopAndResume = (delay: number = 8000) => {
+		const autoplay = api?.plugins().autoplay;
+		if (!autoplay) return;
+
+		autoplay.stop();
+
+		if (resumeTimeout.current) {
+			clearTimeout(resumeTimeout.current);
+		}
+
+		resumeTimeout.current = setTimeout(() => {
+			autoplay.play();
+		}, delay);
+	};
+
+	useEffect(() => {
+		return () => {
+			if (resumeTimeout.current) {
+				clearTimeout(resumeTimeout.current);
+			}
+		};
+	}, []);
 
 	return (
 		<>
-			<Carousel setApi={setApi} className="mx-auto max-w-lg">
+			<Carousel
+				plugins={[
+					Autoplay({
+						delay: 2000,
+						stopOnInteraction: false,
+						stopOnMouseEnter: true,
+					}),
+				]}
+				setApi={setApi}
+				className="mx-auto max-w-lg"
+			>
 				<CarouselContent>
 					{Data.map((item) => (
 						<CarouselItem key={item.name}>
@@ -76,8 +122,22 @@ export function Knowledges({ selectBtnLabel }: Props) {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<Button
+					size="icon"
+					variant="outline"
+					className="absolute size-8 rounded-full top-1/2 -left-12 -translate-y-1/2"
+					onClick={() => goPrev()}
+				>
+					<ArrowLeft />
+				</Button>
+				<Button
+					size="icon"
+					variant="outline"
+					className="absolute size-8 rounded-full top-1/2 -right-12 -translate-y-1/2"
+					onClick={() => goNext()}
+				>
+					<ArrowRight />
+				</Button>
 			</Carousel>
 			<div className="flex gap-3 items-center max-w-lg mx-auto my-4">
 				<div className="grow bg-border h-px"></div>
@@ -90,7 +150,7 @@ export function Knowledges({ selectBtnLabel }: Props) {
 						className="size-9.75"
 						variant="outline"
 						key={item.name}
-						onClick={() => goTo(i)}
+						onClick={() => goToIndex(i)}
 					>
 						<item.iconSVG className="aspect-square size-6"></item.iconSVG>
 					</Button>
