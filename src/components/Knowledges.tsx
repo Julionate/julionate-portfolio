@@ -1,5 +1,3 @@
-import type { AutoplayType } from "embla-carousel-autoplay";
-import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
