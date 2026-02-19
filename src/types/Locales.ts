@@ -1,3 +1,3 @@
-import type { locales } from "astro.config";
+import { availableLocales, defaultLocale } from "astro.config";
 
-export type Locale = (typeof locales)[number];
+export type LocaleCodes = keyof typeof availableLocales
