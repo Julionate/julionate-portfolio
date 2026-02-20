@@ -1,14 +1,7 @@
-import { setDefaultLocale } from "./src/lib/setDefaultLocale";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-
-export const availableLocales = {
-	"en": "english",
-	"es": "español"
-} as const
-
-export const defaultLocale = setDefaultLocale("en")
+import { availableLocales } from "./src/data/locales";
 
 // https://astro.build/config
 export default defineConfig({

@@ -8,13 +8,21 @@ import {
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel";
-import { Knowledges as Data, TypeColors } from "@/data/knowledges";
+import { useTranslation } from "@/lib/useTranslation";
+import { useKnowledges, TypeColors } from "@/data/knowledges";
+import { upperFirstLetter } from "@/lib/upperFirstLetter";
 
 type Props = {
 	selectBtnLabel: string;
 };
 
 export function Knowledges({ selectBtnLabel }: Props) {
+	// useTranslation consumes useKnowledges to get translations
+	const t = useTranslation("en", useKnowledges)
+
+	// Get the keys from useKnowledges to iterate
+	const knowledgeKeys = Object.keys(useKnowledges.en) as Array<keyof typeof useKnowledges["en"]>
+
 	const [api, setApi] = useState<CarouselApi>();
 
 	const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -80,8 +88,10 @@ export function Knowledges({ selectBtnLabel }: Props) {
 				className="mx-auto max-w-lg"
 			>
 				<CarouselContent>
-					{Data.map((item) => (
-						<CarouselItem key={item.name}>
+					{knowledgeKeys.map((name) => {
+						const item = t(name)
+
+						return <CarouselItem key={name}>
 							<div className="relative border p-3 rounded-lg grid grid-cols-4 grid-rows-2 h-40 shadow-xs overflow-hidden">
 								<div
 									className="absolute -z-10 size-96 right-0 dark:opacity-25 opacity-15 pointer-events-none"
@@ -91,14 +101,14 @@ export function Knowledges({ selectBtnLabel }: Props) {
 								></div>
 								<h2 className="self-center col-span-3">
 									{!item.url ? (
-										<span>{item.name}</span>
+										<span>{upperFirstLetter(name)}</span>
 									) : (
 										<a
 											href={item.url}
 											target="_blank"
 											className="no-underline hover:underline font-bold"
 										>
-											{item.name}
+											{upperFirstLetter(name)}
 										</a>
 									)}
 									<span
@@ -114,13 +124,13 @@ export function Knowledges({ selectBtnLabel }: Props) {
 									{(Array.isArray(item.description)
 										? item.description
 										: [item.description]
-									).map((text, i) => (
-										<p key={`${item.name}-${i}`}>{text}</p>
+									).map((text) => (
+										<p key={name}>{text}</p>
 									))}
 								</div>
 							</div>
 						</CarouselItem>
-					))}
+					})}
 				</CarouselContent>
 				<Button
 					size="icon"
@@ -145,16 +155,18 @@ export function Knowledges({ selectBtnLabel }: Props) {
 				<div className="grow bg-border h-px"></div>
 			</div>
 			<div className="flex max-w-lg mx-auto gap-1 flex-wrap">
-				{Data.map((item, i) => (
-					<Button
+				{knowledgeKeys.map((name, i) => {
+					const item = t(name)
+
+					return <Button
 						className="size-9.75"
 						variant="outline"
-						key={item.name}
+						key={name}
 						onClick={() => goToIndex(i)}
 					>
 						<item.iconSVG className="aspect-square size-6"></item.iconSVG>
 					</Button>
-				))}
+				})}
 			</div>
 		</>
 	);

@@ -1,4 +1,4 @@
-import { defaultLocale } from "astro.config";
+import { defaultLocale } from "@/data/locales";
 import type { LocaleCodes, Translation } from "@/types/Locales";
 
 export function useTranslation<T>(lang: LocaleCodes, data: Translation<T>) {

@@ -11,9 +11,11 @@ import {
 	TailwindCSS,
 	TypeScript,
 } from "@/assets/icons";
+import { createTranslation } from "@/lib/createTranslation";
+import type { Merge } from "type-fest"
+import type { Translation } from "@/types/Locales";
 
 type Knowledge = {
-	name: string;
 	description: string | string[];
 	iconSVG: ComponentType<SVGProps<SVGSVGElement>>;
 	type: "Language" | "Technology" | "Framework";
@@ -48,6 +50,93 @@ export const TypeColors: Record<Knowledge["type"], CategoryColors> = {
 		Blob: "from-green-500/25",
 	},
 };
+
+export const useKnowledges = createTranslation({
+	en: {
+		rust: {
+			description: "I know rust since i was an adult",
+			iconSVG: Rust,
+			type: "Language",
+			url: "https://rust-lang.org/",
+			color: "#FFC832",
+		},
+		python: {
+			description: "I know python since i was a Kid",
+			iconSVG: Python,
+			type: "Language",
+			url: "https://www.python.org/",
+			color: "#376F9E",
+		},
+		javaScript: {
+			description: "I know JavaScript since I was a Kid",
+			iconSVG: JavaScript,
+			type: "Language",
+			url: undefined,
+			color: "#F0DB4F",
+		},
+		typeScript: {
+			description: "Types? Nowadays it's a must use.",
+			iconSVG: TypeScript,
+			type: "Language",
+			url: "https://www.typescriptlang.org/",
+			color: "#3178C6",
+		},
+		astro: {
+			description: "The framework which this website was builded.",
+			iconSVG: Astro,
+			type: "Framework",
+			url: "https://astro.build/",
+			color: "#E53BA4",
+		},
+		react: {
+			description:
+				"The most famous frontend framework, this website uses it also.",
+			iconSVG: React,
+			type: "Framework",
+			url: "https://react.dev/",
+			color: "#58C4DC",
+		},
+		preact: {
+			description: "React but with signals and more concise, got it.",
+			iconSVG: Preact,
+			type: "Framework",
+			url: "https://preactjs.com/",
+			color: "#673AB8",
+		},
+		"react native": {
+			description: "Mobile applications with React.",
+			iconSVG: React,
+			type: "Framework",
+			url: "https://reactnative.dev/",
+			color: "#58C4DC",
+		},
+		expo: {
+			description: "Mobile applications with React Native and more!",
+			iconSVG: Expo,
+			type: "Framework",
+			url: "https://expo.dev/",
+			color: "#FFFFFF",
+		},
+		tailwindCSS: {
+			description: [
+				"Style with classess.",
+				"Even this site is styled with tailwindcss!",
+			],
+			iconSVG: TailwindCSS,
+			type: "Framework",
+			url: "https://tailwindcss.com/",
+			color: "#38BDF8",
+		},
+		"express.js": {
+			description:
+				"One of the most famous frameworks to create fast API's with node.",
+			iconSVG: Expressjs,
+			type: "Framework",
+			url: "https://expressjs.com/",
+			color: "#FFFFFF",
+		},
+	},
+} satisfies Translation<Record<string, Knowledge>>);
 
 export const Knowledges = [
 	{
@@ -143,4 +232,4 @@ export const Knowledges = [
 		url: "https://expressjs.com/",
 		color: "#FFFFFF",
 	},
-] as const satisfies readonly Knowledge[];
+] as const satisfies readonly Merge<Knowledge, {name: string}>[];

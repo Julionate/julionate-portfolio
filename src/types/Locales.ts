@@ -1,4 +1,4 @@
-import { availableLocales, defaultLocale } from "astro.config";
+import { availableLocales, defaultLocale } from "@/data/locales";
 import type { DeepPartial } from "node_modules/astro/dist/type-utils";
 
 export type LocaleCodes = keyof typeof availableLocales
