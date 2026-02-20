@@ -1,6 +1,7 @@
-import { LanguageNames } from "@/types/Languages";
-import type { Locale } from "@/types/Locales";
+import { type availableLocalesByCode, defaultLocale } from "@/data/locales";
+import { isLang } from "@/lib/isLang";
 
-export const getLang = (code: string): string => {
-	return LanguageNames[code as Locale] ?? code;
+export const getLangByHTML = (): availableLocalesByCode => {
+	const lang = document.documentElement.lang;
+	return isLang(lang) ? lang : defaultLocale;
 };
