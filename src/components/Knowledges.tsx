@@ -8,20 +8,44 @@ import {
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel";
-import { useTranslation } from "@/lib/useTranslation";
-import { useKnowledges, TypeColors } from "@/data/knowledges";
+import { TypeColors, useKnowledges } from "@/data/knowledges";
+import type { availableLocalesByCode } from "@/data/locales";
+import { defaultLocale } from "@/data/locales";
 import { upperFirstLetter } from "@/lib/upperFirstLetter";
+import { useTranslation } from "@/lib/useTranslation";
 
 type Props = {
 	selectBtnLabel: string;
+	lang: availableLocalesByCode;
 };
 
-export function Knowledges({ selectBtnLabel }: Props) {
+export function Knowledges({ selectBtnLabel, lang = defaultLocale }: Props) {
 	// useTranslation consumes useKnowledges to get translations
-	const t = useTranslation("en", useKnowledges)
+	const t = useTranslation(lang, useKnowledges);
+	const tFallback = useTranslation(defaultLocale, useKnowledges);
+
+	// Construct the object with new fallback
+	const safeItem = <
+		T extends keyof (typeof useKnowledges)[typeof defaultLocale],
+	>(
+		key: T,
+	) => {
+		const data = t(key);
+		const fallback = tFallback(key);
+
+		const result = {} as typeof fallback;
+
+		for (const k of Object.keys(fallback) as Array<keyof typeof fallback>) {
+			result[k] = data[k] ?? fallback[k];
+		}
+
+		return result;
+	};
 
 	// Get the keys from useKnowledges to iterate
-	const knowledgeKeys = Object.keys(useKnowledges.en) as Array<keyof typeof useKnowledges["en"]>
+	const knowledgeKeys = Object.keys(useKnowledges.en) as Array<
+		keyof (typeof useKnowledges)["en"]
+	>;
 
 	const [api, setApi] = useState<CarouselApi>();
 
@@ -89,47 +113,49 @@ export function Knowledges({ selectBtnLabel }: Props) {
 			>
 				<CarouselContent>
 					{knowledgeKeys.map((name) => {
-						const item = t(name)
+						const item = safeItem(name);
 
-						return <CarouselItem key={name}>
-							<div className="relative border p-3 rounded-lg grid grid-cols-4 grid-rows-2 h-40 shadow-xs overflow-hidden">
-								<div
-									className="absolute -z-10 size-96 right-0 dark:opacity-25 opacity-15 pointer-events-none"
-									style={{
-										backgroundImage: `radial-gradient(circle, ${item.color} 0%, transparent 75%)`,
-									}}
-								></div>
-								<h2 className="self-center col-span-3">
-									{!item.url ? (
-										<span>{upperFirstLetter(name)}</span>
-									) : (
-										<a
-											href={item.url}
-											target="_blank"
-											className="no-underline hover:underline font-bold"
+						return (
+							<CarouselItem key={name}>
+								<div className="relative border p-3 rounded-lg grid grid-cols-4 grid-rows-2 h-40 shadow-xs overflow-hidden">
+									<div
+										className="absolute -z-10 size-96 right-0 dark:opacity-25 opacity-15 pointer-events-none"
+										style={{
+											backgroundImage: `radial-gradient(circle, ${item.color} 0%, transparent 75%)`,
+										}}
+									></div>
+									<h2 className="self-center col-span-3">
+										{!item.url ? (
+											<span>{upperFirstLetter(name)}</span>
+										) : (
+											<a
+												href={item.url}
+												target="_blank"
+												className="no-underline hover:underline font-bold"
+											>
+												{upperFirstLetter(name)}
+											</a>
+										)}
+										<span
+											className={`inline-block w-max text-xs font-medium px-2 py-1 rounded-full -translate-y-1 ml-2 shadow-lg ${TypeColors[item.type].Shadow} ${TypeColors[item.type].Text} ${TypeColors[item.type].Background}`}
 										>
-											{upperFirstLetter(name)}
-										</a>
-									)}
-									<span
-										className={`inline-block w-max text-xs font-medium px-2 py-1 rounded-full -translate-y-1 ml-2 shadow-lg ${TypeColors[item.type].Shadow} ${TypeColors[item.type].Text} ${TypeColors[item.type].Background}`}
-									>
-										{item.type}
-									</span>
-								</h2>
-								<div className="w-fit size-16 col-start-4 justify-self-end">
-									<item.iconSVG className="size-full aspect-square" />
+											{item.type}
+										</span>
+									</h2>
+									<div className="w-fit size-16 col-start-4 justify-self-end">
+										<item.iconSVG className="size-full aspect-square" />
+									</div>
+									<div className="col-span-4">
+										{(Array.isArray(item.description)
+											? item.description
+											: [item.description]
+										).map((text) => (
+											<p key={`${name}-${text}`}>{text}</p>
+										))}
+									</div>
 								</div>
-								<div className="col-span-4">
-									{(Array.isArray(item.description)
-										? item.description
-										: [item.description]
-									).map((text) => (
-										<p key={name}>{text}</p>
-									))}
-								</div>
-							</div>
-						</CarouselItem>
+							</CarouselItem>
+						);
 					})}
 				</CarouselContent>
 				<Button
@@ -156,16 +182,18 @@ export function Knowledges({ selectBtnLabel }: Props) {
 			</div>
 			<div className="flex max-w-lg mx-auto gap-1 flex-wrap">
 				{knowledgeKeys.map((name, i) => {
-					const item = t(name)
+					const item = safeItem(name);
 
-					return <Button
-						className="size-9.75"
-						variant="outline"
-						key={name}
-						onClick={() => goToIndex(i)}
-					>
-						<item.iconSVG className="aspect-square size-6"></item.iconSVG>
-					</Button>
+					return (
+						<Button
+							className="size-9.75"
+							variant="outline"
+							key={name}
+							onClick={() => goToIndex(i)}
+						>
+							<item.iconSVG className="aspect-square size-6"></item.iconSVG>
+						</Button>
+					);
 				})}
 			</div>
 		</>
