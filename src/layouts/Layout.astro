@@ -31,7 +31,7 @@ const { title, lang = defaultLocale } = Astro.props;
 	}
 </script>
 
-<html lang={lang} class="scroll-smooth">
+<html lang={lang} style="scroll-behavior: smooth;">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -40,7 +40,7 @@ const { title, lang = defaultLocale } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{!title ? "Julionate" : `${title} - Julionate`}</title>
 	</head>
-	<body class="grid grid-rows-[auto_1fr_auto] min-h-screen min-w-screen font-rubik">
+	<body class="grid grid-rows-[auto_1fr_auto] min-h-screen min-w-screen font-rubik overflow-auto! scroll-smooth!">
 		<slot/>
 	</body>
 </html>
