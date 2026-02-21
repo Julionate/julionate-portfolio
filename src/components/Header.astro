@@ -1,32 +1,30 @@
 ---
-import { i18n } from "astro:config/client";
-import { getRelativeLocaleUrl, toCodes } from "astro:i18n";
+import type { Entries } from "type-fest";
 import { LanguageButton } from "@/components/LanguageButton";
 import { ThemeButtonManager } from "@/components/ThemeButtonManager";
-import type { Language } from "@/types/Languages";
-import type { Locale } from "@/types/Locales";
+import { availableLocales, defaultLocale } from "@/data/locales";
+import { getRelativeLocaleUrl } from "@/lib/getUrl";
+import { isLang } from "@/lib/isLang";
+import type { LocaleWithUrl } from "@/types/Locales";
 
-type props = {
-	langBtnLabel: string;
-};
+const localesWithUrl: LocaleWithUrl[] = [];
 
-const { langBtnLabel = "Language" } = Astro.props as props;
+const locales = Object.entries(availableLocales) as Entries<
+	typeof availableLocales
+>;
 
-let languages: Language[] = [];
+locales.forEach(([code, name]) => {
+	const url = getRelativeLocaleUrl(code, "/");
+	localesWithUrl.push({ code, name, url });
+});
 
-if (i18n?.locales) {
-	const codes = toCodes(i18n.locales) as Locale[];
-
-	codes.forEach((code) => {
-		const url = getRelativeLocaleUrl(code);
-		languages.push({ code, url });
-	});
-}
+const currentLang = Astro.currentLocale ?? defaultLocale;
+const lang = isLang(currentLang) ? currentLang : defaultLocale;
 ---
 
 <header class="flex items-center justify-end shadow-md dark:shadow-white/5 z-50 h-12 px-3 fixed w-screen">
     <div class="flex gap-2">
-        <LanguageButton buttonText={langBtnLabel} locales={languages} client:load></LanguageButton>
+        <LanguageButton locales={localesWithUrl} lang={lang} client:load></LanguageButton>
         <ThemeButtonManager client:load></ThemeButtonManager>
     </div>
 </header>

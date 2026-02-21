@@ -7,28 +7,33 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { Language } from "@/types/Languages";
+import { ui } from "@/data/ui";
+import { upperFirstLetter } from "@/lib/upperFirstLetter";
+import { useTranslation } from "@/lib/useTranslation";
+import type { availableLocalesByCode, LocaleWithUrl } from "@/types/Locales";
 
-interface Props {
-	buttonText: string;
-	locales: Language[];
-}
+type Props = {
+	locales: LocaleWithUrl[];
+	lang: availableLocalesByCode;
+};
 
-export function LanguageButton({ buttonText, locales }: Props) {
+export function LanguageButton({ locales, lang }: Props) {
+	const t = useTranslation(lang, ui);
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button variant="outline">
 					<Languages />
-					<span>{buttonText}</span>
+					<span>{t("header.languageButton")}</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuGroup>
-					{locales.map((locale) => (
-						<DropdownMenuItem className="p-0" key={locale.code}>
-							<a className="size-full p-1.5" href={locale.url}>
-								{/* {getLang(locale.code)} */}
+					{locales.map((item) => (
+						<DropdownMenuItem className="p-0" key={item.code}>
+							<a className="size-full p-1.5" href={item.url}>
+								{upperFirstLetter(item.name)}
 							</a>
 						</DropdownMenuItem>
 					))}

@@ -9,10 +9,10 @@ import {
 	CarouselItem,
 } from "@/components/ui/carousel";
 import { TypeColors, useKnowledges } from "@/data/knowledges";
-import type { availableLocalesByCode } from "@/data/locales";
 import { defaultLocale } from "@/data/locales";
 import { upperFirstLetter } from "@/lib/upperFirstLetter";
 import { useTranslation } from "@/lib/useTranslation";
+import type { availableLocalesByCode } from "@/types/Locales";
 
 type Props = {
 	selectBtnLabel: string;
