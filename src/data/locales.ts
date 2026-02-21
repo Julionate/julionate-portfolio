@@ -6,4 +6,6 @@ export const availableLocales = {
 	"es": "español"
 } as const
 
+export type availableLocalesByCode = keyof typeof availableLocales
+
 export const defaultLocale = setDefaultLocale("en")

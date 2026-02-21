@@ -7,7 +7,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getLang } from "@/lib/getLang";
 import type { Language } from "@/types/Languages";
 
 interface Props {
@@ -29,7 +28,7 @@ export function LanguageButton({ buttonText, locales }: Props) {
 					{locales.map((locale) => (
 						<DropdownMenuItem className="p-0" key={locale.code}>
 							<a className="size-full p-1.5" href={locale.url}>
-								{getLang(locale.code)}
+								{/* {getLang(locale.code)} */}
 							</a>
 						</DropdownMenuItem>
 					))}
