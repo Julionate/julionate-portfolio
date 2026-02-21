@@ -2,7 +2,9 @@
 import { LoaderCircle } from "lucide-react";
 import { Knowledges } from "@/components/Knowledges";
 import { Button } from "@/components/ui/button";
+import { defaultLocale } from "@/data/locales";
 import Section from "@/layouts/Section.astro";
+import { isLang } from "@/lib/isLang";
 
 type Props = {
 	presTitle: string;
@@ -14,6 +16,9 @@ type Props = {
 
 const { presTitle, presParagraph, presBtnText, knowTitle, knowSelectLabel } =
 	Astro.props as Props;
+
+const currentLang = Astro.currentLocale ?? defaultLocale;
+const lang = isLang(currentLang) ? currentLang : defaultLocale;
 
 const paragraphs = Array.isArray(presParagraph)
 	? presParagraph
@@ -30,7 +35,7 @@ const paragraphs = Array.isArray(presParagraph)
     </div>
     <div class="prose dark:prose-invert prose-h2:m-0 prose-p:m-0">
         <h1 class="font-bold text-center">{knowTitle}</h1>
-        <Knowledges selectBtnLabel={knowSelectLabel} client:only>
+        <Knowledges selectBtnLabel={knowSelectLabel} lang={lang} client:only>
             <div slot="fallback" class="h-50.75">
                 <LoaderCircle className="mx-auto animate-spin size-8"></LoaderCircle>
             </div>
