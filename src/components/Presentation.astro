@@ -31,7 +31,9 @@ const paragraphs = Array.isArray(presParagraph)
         {paragraphs.map((paragraph) => (
             <p>{paragraph}</p>
         ))}
-        <Button className="cursor-pointer">{presBtnText}</Button>
+        <a href="#projects">
+            <Button>{presBtnText}</Button>
+        </a>
     </div>
     <div class="prose dark:prose-invert prose-h2:m-0 prose-p:m-0">
         <h1 class="font-bold text-center">{knowTitle}</h1>
