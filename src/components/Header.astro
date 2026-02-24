@@ -1,5 +1,7 @@
 ---
+import { getImage } from "astro:assets";
 import type { Entries } from "type-fest";
+import Grain from "@/assets/grain.png";
 import { LanguageButton } from "@/components/LanguageButton";
 import { ThemeButtonManager } from "@/components/ThemeButtonManager";
 import { availableLocales, defaultLocale } from "@/data/locales";
@@ -20,9 +22,12 @@ locales.forEach(([code, name]) => {
 
 const currentLang = Astro.currentLocale ?? defaultLocale;
 const lang = isLang(currentLang) ? currentLang : defaultLocale;
+
+const grain = await getImage({ src: Grain, format: "avif" });
 ---
 
-<header class="flex items-center justify-end shadow-md dark:shadow-white/5 z-50 h-12 px-3 fixed w-screen">
+<div style={`background-image: url(${grain.src})`} class="z-40 h-12 fixed w-screen backdrop-blur-sm mix-blend-soft-light border-b border-white/50"></div>
+<header class=`flex items-center justify-end shadow-md dark:shadow-white/5 z-50 h-12 px-3 fixed w-screen bg-linear-to-t to-100% to-background/75`>
     <div class="flex gap-2">
         <LanguageButton locales={localesWithUrl} lang={lang} client:load></LanguageButton>
         <ThemeButtonManager client:load></ThemeButtonManager>
