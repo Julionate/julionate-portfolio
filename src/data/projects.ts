@@ -3,7 +3,7 @@ import { Placeholder } from "@/assets/projectImages";
 import { createTranslation } from "@/lib/createTranslation";
 import type { Translation } from "@/types/Locales";
 
-type project = {
+export type project = {
 	name: string;
 	description: string[] | string;
 	url: string;
