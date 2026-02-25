@@ -1,5 +1,5 @@
 import type { ImageMetadata } from "astro";
-import { Placeholder } from "@/assets/projectImages";
+import { Cryptorare, Educards, PomodoroDesktop } from "@/assets/projectImages";
 import { createTranslation } from "@/lib/createTranslation";
 import type { Translation } from "@/types/Locales";
 
@@ -9,28 +9,39 @@ export type project = {
 	url: string;
 	imageUrl: ImageMetadata;
 	imageAlt: string;
-};
-
-const generateData = (quantity: number): Record<string, project> => {
-	return Object.fromEntries(
-		Array.from({ length: quantity }, (_, i) => {
-			return [
-				`project-${i + 1}`,
-				{
-					name: `Project-${i + 1}`,
-					description:
-						"Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
-					imageAlt: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-					imageUrl: Placeholder,
-					url: "https://github.com/julionate",
-				} satisfies project,
-			];
-		}),
-	);
+	color: string;
 };
 
 const testData = {
-	en: generateData(10),
+	en: {
+		"pomodoro-desktop": {
+			name: "Pomodoro Desktop",
+			description:
+				"A pomodoro application builded with Tauri, Preact, Typescript and TailwindCSS",
+			url: "https://github.com/Julionate/pomodoro-desktop",
+			imageUrl: PomodoroDesktop,
+			imageAlt: "Pomodoro Desktop Application",
+			color: "#FFFFFF",
+		},
+		educards: {
+			name: "Educards",
+			description:
+				"Mobile app that allows you to learn concepts through decks and cards. Facilitating your learning and motivating you to learn more.",
+			url: "https://github.com/Julionate/educards",
+			imageUrl: Educards,
+			imageAlt: "Educards app",
+			color: "#4CABF6",
+		},
+		cryptorare: {
+			name: "Cryptorare",
+			description:
+				"Mobile app that allows you to know crypto information with CoinGecko API",
+			url: "https://github.com/Julionate/Cryptorare",
+			imageUrl: Cryptorare,
+			imageAlt: "Cryptorare app",
+			color: "#141419",
+		},
+	},
 } as const satisfies Translation<Record<string, project>>;
 
 export const Projects = createTranslation(
