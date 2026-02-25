@@ -39,7 +39,7 @@ const testData = {
 			url: "https://github.com/Julionate/Cryptorare",
 			imageUrl: Cryptorare,
 			imageAlt: "Cryptorare app",
-			color: "#141419",
+			color: "#c24296",
 		},
 	},
 } as const satisfies Translation<Record<string, project>>;

@@ -99,7 +99,8 @@ export function Card({ content }: Props) {
 					></div>
 					<div
 						ref={(el) => addFollower(el, i)}
-						className="absolute follower blur-xl -z-20 mix-blend-hard-light bg-black dark:bg-white size-64 pointer-events-none -translate-1/2 rounded-full opacity-0 transition-opacity duration-800"
+						style={{ backgroundColor: item.color }}
+						className="absolute follower blur-xl -z-20 mix-blend-hard-light size-64 pointer-events-none -translate-1/2 rounded-full opacity-0 transition-opacity duration-800"
 					></div>
 				</div>
 			))}
