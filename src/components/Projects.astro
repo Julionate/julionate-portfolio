@@ -15,18 +15,17 @@ const featured = data.shift()?.[1];
     </div>
 
     <div class="w-full max-w-6xl grid justify-items-center">
-        <div>
-            {featured !== undefined ?
-            <div class="group">
-                <div class="relative mb-6">
-                    <Image src={featured.imageUrl} alt={featured.imageAlt} class="rounded-lg aspect-video object-cover"></Image>
+        <div class="w-full flex flex-col items-center">
+            {featured !== undefined ? (
+                <div class="relative mb-6 group">
+                    <Image src={featured.imageUrl} alt={featured.imageAlt} class="rounded-lg aspect-video object-cover max-w-4xl"></Image>
                     <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent to-background group-hover:opacity-0 transition-opacity ease-in-out duration-500" />
                 </div>
-                <div class="prose dark:prose-invert prose-p:mt-3 prose-p:mb-12  prose-headings:m-0">
+                <div class="prose dark:prose-invert prose-p:mt-3 prose-p:mb-12 prose-headings:m-0 text-center">
                     <h1>{featured.name}</h1>
                     <p>{featured.description}</p>
                 </div>
-            </div> : null}
+            ) : null}
         </div>
         <Card content={data} client:idle>
     </div>
