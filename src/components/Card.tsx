@@ -8,7 +8,7 @@ type Props = {
 
 export function Card({ content }: Props) {
 	const container = useRef<HTMLDivElement>(null);
-	const cards = useRef<HTMLDivElement[]>([]);
+	const cards = useRef<HTMLAnchorElement[]>([]);
 	const followers = useRef<HTMLDivElement[]>([]);
 
 	const addFollower = (element: HTMLDivElement | null, i: number) => {
@@ -17,7 +17,7 @@ export function Card({ content }: Props) {
 		}
 	};
 
-	const addCard = (element: HTMLDivElement | null, i: number) => {
+	const addCard = (element: HTMLAnchorElement | null, i: number) => {
 		if (element) {
 			cards.current[i] = element;
 		}
@@ -77,10 +77,12 @@ export function Card({ content }: Props) {
 			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center"
 		>
 			{content.map(([_, item], i) => (
-				<div
+				<a
+					target="_blank"
+					href={item.url}
 					key={item.name}
 					ref={(el) => addCard(el, i)}
-					className="relative shadow-lg shadow-accent/85 dark:shadow-accent/50 w-full h-96 md:h-64 flex flex-col p-2 rounded-lg overflow-hidden border"
+					className="relative shadow-lg shadow-accent/85 dark:shadow-accent/50 w-full h-96 md:h-64 flex flex-col p-2 rounded-lg overflow-hidden border hover:scale-98 transition-transform duration-500 ease-in-out"
 				>
 					<img
 						src={item.imageUrl.src}
@@ -102,7 +104,7 @@ export function Card({ content }: Props) {
 						style={{ backgroundColor: item.color }}
 						className="absolute follower blur-xl -z-20 mix-blend-hard-light size-64 pointer-events-none -translate-1/2 rounded-full opacity-0 transition-opacity duration-800"
 					></div>
-				</div>
+				</a>
 			))}
 		</div>
 	);

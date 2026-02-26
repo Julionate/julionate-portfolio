@@ -1,12 +1,13 @@
 import { Astro } from "@/assets/icons/Astro";
 import { Expo } from "@/assets/icons/Expo";
 import { Expressjs } from "@/assets/icons/Expressjs";
+import { GitHub } from "@/assets/icons/GitHub";
 import { JavaScript } from "@/assets/icons/JavaScript";
 import { Preact } from "@/assets/icons/Preact";
 import { Python } from "@/assets/icons/Python";
 import { React } from "@/assets/icons/React";
 import { Rust } from "@/assets/icons/Rust";
-import { TailwindCSS } from "@/assets/icons/Tailwindcss";
+import { TailwindCSS } from "@/assets/icons/TailwindCSS";
 import { TypeScript } from "@/assets/icons/TypeScript";
 
 export {
@@ -20,4 +21,5 @@ export {
 	Astro,
 	TypeScript,
 	Expressjs,
+	GitHub,
 };

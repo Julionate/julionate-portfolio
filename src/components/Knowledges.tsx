@@ -177,7 +177,7 @@ export function Knowledges({ selectBtnLabel, lang = defaultLocale }: Props) {
 			</Carousel>
 			<div className="flex gap-3 items-center max-w-lg mx-auto my-4">
 				<div className="grow bg-border h-px"></div>
-				<p className="text-primary/75">{selectBtnLabel}</p>
+				<p className="text-muted-foreground">{selectBtnLabel}</p>
 				<div className="grow bg-border h-px"></div>
 			</div>
 			<div className="flex max-w-lg mx-auto gap-1 flex-wrap">

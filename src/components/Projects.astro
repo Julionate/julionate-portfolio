@@ -1,6 +1,9 @@
 ---
+import { ACTION_ERROR_CODES } from "astro:actions";
 import { Image } from "astro:assets";
+import { GitHub } from "@/assets/icons";
 import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
 import { Projects as ProjectsData } from "@/data/projects";
 import Section from "@/layouts/Section.astro";
 
@@ -21,9 +24,17 @@ const featured = data.shift()?.[1];
                     <Image src={featured.imageUrl} alt={featured.imageAlt} class="rounded-lg aspect-video object-cover max-w-4xl"></Image>
                     <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent to-background group-hover:opacity-0 transition-opacity ease-in-out duration-500" />
                 </div>
-                <div class="prose dark:prose-invert prose-p:mt-3 prose-p:mb-12 prose-headings:m-0 text-center">
-                    <h1>{featured.name}</h1>
-                    <p>{featured.description}</p>
+                <div class="prose dark:prose-invert text-center">
+                    <h1 class="mb-3">{featured.name}</h1>
+                    <p class="mt-0 mb-3">{featured.description}</p>
+                    <a href={featured.url}>
+                        <Button variant="default" className="cursor-pointer"><GitHub className="fill-primary-foreground"/>See on Github</Button>
+                    </a>
+                </div>
+                <div class="my-12 flex w-full text-nowrap items-center pointer-events-none select-none">
+                    <div class="bg-border grow h-px"/>
+                    <span class="px-6 text-muted-foreground">More projects</span>
+                    <div class="bg-border grow h-px"/>
                 </div>
             ) : null}
         </div>
